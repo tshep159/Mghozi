@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header :: header-css"/>
+    <title>FixMyPlace|Add Municipality</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+ <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+ 
+</head>
+<body class="mee">
+    <nav class="go-nowhere teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style="width:225px; height: 60px;"/></a>
+          <ul class="right hide-on-med-and-down">
+            <li  role="presentation"><a th:href="@{/login}">Sign In</a></li>
+            <li class="active" role="presentation"><a th:href="@{/registration}">Sign Up</a></li>
+            <li role="presentation"><a th:href="@{/about}">About Us</a></li>
+            <li role="presentation"><a th:href="@{/faq}">FAQ</a></li>
+            <li role="presentation"><a th:href="@{/privacy}">Privacy</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav teal darken-3">
+            <li  role="presentation"><a th:href="@{/login}">Sign In</a></li>
+            <li class="active" role="presentation"><a th:href="@{/registration}">Sign Up</a></li>
+            <li role="presentation"><a th:href="@{/about}">About Us</a></li>
+            <li role="presentation"><a th:href="@{/faq}">FAQ</a></li>
+            <li role="presentation"><a th:href="@{/privacy}">Privacy</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+    </div>
+</nav>
+<br/>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12 m8">
+            <div class="card white darken-1">
+                <div class="card-content white-text">
+
+                    <form autocomplete="off" action="#" th:action="@{/Municipality-registration}"
+                          th:object="${user}" method="post" class="form-horizontal"
+                          role="form">
+
+                        <h2 class="teal-text">Personal Information</h2>
+                        <span class="green-text" th:utext="${successMessage}"></span>
+                        <div class="form-group">
+
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                <label  th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"
+                                       class="red-text"></label>
+                                <input type="text"   id="fn" th:field="*{first_name}" placeholder="First Name"
+                                      class="validate"/>
+                                    <label for="fn">First Name</label>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                          class="red-text"></label>
+
+                                <input type="text" id="ln" th:field="*{lastName}"
+                                       placeholder="Last Name" class="form-control input-lg" />
+                                <label for="ln">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                        class="red-text"></label>
+                                <input type="text" id="email" th:field="*{email}" placeholder="Email"
+                                       class="form-control input-lg"/>
+
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label
+                                        th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                        class="red-text"></label>
+                                <input type="password" id="pw" th:field="*{password}"
+                                       placeholder="Password" class="form-control input-lg" />
+                                <label for="pw">Password</label>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label
+                                        th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"
+                                        class="red-text"></label>
+                                <input type="text" id="cn" th:field="*{contactNumber}"
+                                       placeholder="Contact Number" class="form-control input-lg"/>
+
+                                <label for="cn">Contact Number</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label
+                                        th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                        class="red-text"></label>
+                                <input type="text" id="un" th:field="*{username}"
+                                       placeholder="Username" class="form-control input-lg"/>
+                                <label for="un">Username</label>
+
+                            </div>
+
+                        </div>
+                        <h2 class="teal-text">Address Details</h2>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+
+                                <label th:if="${#fields.hasErrors('addressLineOne')}" th:errors="*{addressLineOne}"
+                                       class="red-text"></label>
+                                <input type="text" id="l1" th:field="*{addressLineOne}"
+                                       placeholder="Line One" class="form-control input-lg" />
+
+                                <label for="l1">Line One</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label
+                                        th:if="${#fields.hasErrors('addressLineTwo')}" th:errors="*{addressLineTwo}"
+                                        class="red-text"></label>
+
+                                <input type="text" id="l2" th:field="*{addressLineTwo}"
+                                       placeholder="Line Two" class="form-control input-lg" />
+                                <label for="l2">Line Two</label>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label
+                                        th:if="${#fields.hasErrors('city')}" th:errors="*{city}"
+                                        class="red-text"></label>
+
+                                <input type="text" id="city" th:field="*{city}"
+                                       placeholder="Suburb" class="form-control input-lg" />
+
+                                <label for="city">Suburb</label>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label
+                                        th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"
+                                        class="red-text"></label>
+
+                                <input type="text" id="zip" th:field="*{postalCode}"
+                                       placeholder="Zip Code" class="form-control input-lg" />
+                                <label for="zip">Zip Code</label>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9 ">
+                                <button type="submit" class="btn btn-success btn-block right">Sign Up</button>
+                            </div>
+                        </div>
+                        <br />
+                    </form>
+
+                </div>
+                <div class="card-action">
+                    <div class="topCushion">Already a member? <a th:href="@{/login}" class="red-text">Sign In</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+
+  <div th:replace="/fragments/nfooter :: nfooter"/>
+
+
+</div>
+<!-- /.container -->
+
+<div th:replace="/fragments/footer :: footer"/>
+
+<!--  Scripts-->
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+
+</body>
+</html>

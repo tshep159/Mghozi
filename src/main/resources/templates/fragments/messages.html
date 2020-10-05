@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+<div th:fragment="messages">
+    <div class="row"  >
+        <div class="col m12 m7">
+            <div class="card" th:each="message : ${pager.messages}">
+                <div class="card-action">
+                    <a class="black-text" th:text="${message.user.username}">User</a>
+                    <hr/>
+                    <a class="red-text" th:text="${message.user.username}" th:href="@{'admin/message/' + ${message.id}}"></a><br/>
+                </div>
+                <div class="card-content">
+                    <h7 class="panel-body" th:text="${message.body}">Body</h7>
+                    <hr/>
+                    <p class="teal-text" th:text="'Created: ' + ${#dates.format(message.createDate, 'dd-MMM-yyyy')}">Created by</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Reply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="container"  style="height: 50%;">
+<br/>   <br/>
+    <div th:fragment="messages">
+        <br/> <br/> <br/>
+
+ <div class="chip blue" th:each="message :${pager.messages}">
+    <a class="white-text" th:text="${message.user.username}+'  : ' ">User</a>
+    <h7 class="black-text" th:text="${message.body}+'  ' +${message.createDate}">Body</h7>
+     <br/>
+ </div>
+ </div>
+</div>
+</body>
+</html>

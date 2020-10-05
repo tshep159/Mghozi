@@ -1,0 +1,176 @@
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    
+    <!-- CSS  -->
+     <link href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+	<link href="css/main_1.css" rel="stylesheet" th:href="@{/css/main_1.css}"/>
+	<link href="css/animate.css" rel="stylesheet" th:href="@{/css/animate.css}"/>	
+	
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Auto complete Script-->
+   <script>
+ $(document).ready(function() {
+          $('#search').devbridgeAutocomplete({
+          serviceUrl: '/find-place',
+          paramName: 'search',
+          minChars: 1,
+          autoSelectFirst: true,
+      });
+    });
+  </script>
+
+    </head>
+<body class="mee">
+             <nav class="go-nowhere teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+               <ul class="right hide-on-med-and-down">
+               <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li   role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                <li class="active" role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi </a></li>
+                 <li role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+
+            <ul  id="nav-mobile" class="sidenav teal darken-3">
+                <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li   role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                <li class="active" role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi </a></li>
+                 <li role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+        </div>
+    </nav>     
+    <div  th:object="${event}" class="">
+    	 <input type="hidden" th:field="*{id}"/>
+         
+     <section id="home">	
+         <div id="main-slider" class="carousel slide" data-ride="carousel" style="height: auto;">
+			<ol class="carousel-indicators">
+				<li data-target="#main-slider" data-slide-to="0" class="active"></li>
+				<li data-target="#main-slider" data-slide-to="1"></li>
+				<li data-target="#main-slider" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="item active">
+					<img class="img-responsive" th:src="@{/images/slider/bg1.jpg}" src="images/slider/bg1.jpg" alt="slider"/>						
+					<div class="carousel-caption">
+						<h2 th:text="${event.clubName}">register for our next event </h2>
+                                                <div class="card red">
+                                                <h5 th:text="'Entrance'"></h5>
+                                                
+                                                <h4 th:text="'VIP R '+${event.vipPrice}">full event package only @$199</h4>
+						<h4 th:text="'Normal R '+${event.normalPrice}">full event package only @$199</h4>
+                                                </div>
+                                                <a href="#explore">More <i class="fa fa-angle-right"></i></a>
+					</div>
+                                        
+                                        
+                           
+				</div>
+				<div class="item">
+					<img class="img-responsive" th:src="@{/images/slider/bg2.jpg}" src="images/slider/bg2.jpg" alt="slider"/>	
+					<div class="carousel-caption">
+						<h2>register for our next event </h2>
+						<h4>full event package only @$199</h4>
+						<a href="#contact">GRAB YOUR TICKETS <i class="fa fa-angle-right"></i></a>
+					</div>
+				</div>
+                            
+				<div class="item">
+					<img class="img-responsive" th:src="@{/images/slider/bg3.jpg}" src="images/slider/bg3.jpg" alt="slider"/>	
+					<div class="carousel-caption">
+						<h2>register for our next event </h2>
+						<h4>full event package only @$199</h4>
+						<a href="#contact" >GRAB YOUR TICKETS <i class="fa fa-angle-right"></i></a>
+					</div>
+				</div>				
+			</div>
+		</div>    	
+    </section>
+	<!--/#home-->
+    <section id="explore">
+		<div class="container">
+			<div class="row">
+				<div class="watch">
+					<img class="img-responsive" src="images/watch.png" th:src="@{/images/slider/watch.png}" alt=""/>
+				</div>				
+				<div class="col-md-12 col-md-offset-2 col-sm-12 white-text">
+					<h4>our next event in</h4>
+				</div>				
+				<div class="col-sm-7 col-md-12">					
+					<ul id="countdown">
+						<li>					
+							<span class="days time-font">10</span>
+                                                        <p class="white-text">day </p>
+						</li>
+						<li>
+							<span class="hours time-font">06</span>
+							<p class="white-text">month </p>
+						</li>
+						<li>
+							<span class="minutes time-font time-font">18</span>
+							<p class="white-text">year</p>
+						</li>
+						<li>
+							<span class="seconds time-font">00</span>
+							<p class="white-text">seconds</p>
+						</li>				
+					</ul>
+				</div>
+			</div>
+			<div class="cart">
+				<a  href="mailto:info@plaze.co.za"><i class="fa fa-phone-square"></i> <span>Enquire!</span></a>
+			</div>
+		</div>
+	</section><!--/#explore-->
+
+       
+	
+ 
+	<section id="about">
+		<div class="guitar2">				
+			<img class="img-responsive" src="images/guitar2.jpg" th:src="@{/images/guitar2.jpg}" alt="guitar"/>
+		</div>
+		<div class="about-content  teal">					
+					<h2> Event Details</h2>
+                                        <p class="white-text " th:text="${event.description}">We have created an extremely positive and relaxed environment all geared towards developing your skills whether you are an absolute beginner trying to get off the ground or an accomplished player looking to move to the next level. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+					<a th:href="@{'/download-document/'+${event.id}}" class="btn btn-primary">Download <i class="fa fa-angle-down"></i></a>
+				
+		</div>
+	</section><!--/#about-->
+        
+    </div>
+	<div th:replace="/fragments/footer :: footer"/>
+        <script type="text/javascript" src="js/jquery.js" th:src="@{/js/jquery.js}" ></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.js}"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true" ></script>
+  	<script type="text/javascript" src="js/gmaps.js" th:src="@{/js/gmaps.js}"></script>
+	<script type="text/javascript" src="js/smoothscroll.js" th:src="@{/js/smoothscroll.js}"></script>
+    <script type="text/javascript" src="js/jquery.parallax.js" th:src="@{/js/jquery.parallax.js}"></script>
+    <script type="text/javascript" src="js/coundown-timer.js" th:src="@{/js/coundown-timer.js}"></script>
+    <script type="text/javascript" src="js/jquery.scrollTo.js" th:src="@{/js/jquery.nav.js}"></script>
+    <script type="text/javascript" src="js/jquery.nav.js" th:src="@{/js/materialize.js}"></script>
+    <script type="text/javascript" src="js/main.js" th:src="@{/js/main.js}"></script>  
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+    </body>
+</html>

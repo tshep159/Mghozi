@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    <link href="../css/style.css" th:href="@{/css/main.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <style>
+
+    </style>
+</head>
+<body class="mee">
+      <nav class="teal darken-3 " role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo"  th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+              <ul class="right hide-on-med-and-down white-text">
+                  <li  role="presentation"><a class="white-text" th:href="@{/login}">Sign In</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/provinces}">Places</a></li>
+              </ul>
+
+              <ul id="nav-mobile" class="sidenav teal darken-3">
+                   <li  role="presentation"><a class="white-text" th:href="@{/login}">Sign In</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/provinces}">Places</a></li>
+              
+              </ul>
+              <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+          </div>
+      </nav>
+
+
+      <div id="index-banner" class="parallax-container">
+          <div class="section no-pad-bot">
+              <div class="container">
+
+                  <h1 class="header center teal-text text-lighten-2">pLaze</h1>
+                  <div class="row center">
+                      <h5 class="header col s12 light">Keeping you in touch with your hood</h5>
+                  </div>
+                  
+                    <div class="row center">
+                      <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get the App <li class="material-icons">android</li></a>
+                  </div>
+
+              </div>
+          </div>
+          
+          <div class="parallax"><img src="../static/img/floot.jpg" th:src="@{/img/background3.jpg}" alt="Background image"/></div>
+      </div>
+
+
+      <div class="container">
+          <div class="section ">
+
+              <!--   Icon Section   -->
+              <div class="row card">
+                  <center>
+                  <div class="col s12 m4 green">
+                      <div class="icon-block">
+                            <br/>
+                          <h2 class="big-icons-wrapper pulse white-text "><i class="big-icons material-icons ">person_add</i>
+                           <h5 class="center white-text">Sign Up</h5>
+                          </h2>
+
+                             
+                       </div>
+                  </div>
+
+                  <div class="col s12 m4 blue">
+                      <div class="icon-block">
+                          <br/>
+                          <h2 class="big-icons-wrapper pulse white-text"><i class="big-icons material-icons">lock_open
+                          </i></h2>
+                          <h5 class="center white-text">Sign In</h5>
+                      </div>
+                  </div>
+
+                  
+                  <div class="col s12 m4 brown">
+                      <div class="icon-block ">
+                          <br/>
+                          <h2 class="big-icons-wrapper pulse white-text"><i class="big-icons material-icons">search</i></h2>
+                          <h5 class="center white-text">Search Places</h5>
+                      </div>
+                  </div>
+                  
+                  <div class="col s12 m4 grey">
+                      <div class="icon-block"><br/>
+                          <h2 class="big-icons-wrapper pulse blue-text"><i class="big-icons material-icons">chat</i></h2>
+                          <h5 class="center white-text">Post A Story</h5>
+                      </div>
+                  </div>
+
+                  <div class="col s12 m4 yellow">
+                      <div class="icon-block "><br/>
+                          <h2 class="big-icons-wrapper pulse black-text"><i class="big-icons material-icons">visibility</i></h2>
+                          
+                          <h5 class="center blue-text">View Stories</h5>
+                      </div>
+                  </div>
+
+                  <div class="col s12 m4 pink">
+                      <div class="icon-block "><br/>
+                          <h2 class="big-icons-wrapper pulse red-text"><i class="big-icons material-icons">favorite</i></h2>
+                          <h5 class="center white-text">Support A Story</h5>
+                      </div>
+                  </div>
+
+                  <div class="col s12 m4">
+                      <div class="icon-block"><br/>
+                          <h2 class="big-icons-wrapper pulse blue-text"><i class="big-icons material-icons">question_answer  </i></h2>
+                          <h5 class="center">Get Responds</h5>
+                      </div>
+                  </div>
+
+                  <div class="col s12 m4 dark-blu darken-1">
+                      <div class="icon-block "><br/>
+                          <h2 class="big-icons-wrapper pulse white-text"><i class="big-icons material-icons">location_city</i></h2>
+                          <h5 class="center white-text">Post To A Place</h5>
+                      </div>
+                  </div>
+
+
+
+                  <div class="col s12 m4 amber ">
+                      <div class="icon-block"><br/>
+                        <h2 class="big-icons-wrapper pulse blue-text"><i class="big-icons material-icons">place</i></h2>
+                          <h5 class="center blue-text">View Stories By A Place</h5>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="col s12 m4 purple">
+                      <div class="icon-block"><br/>
+                        <h2 class="big-icons-wrapper pulse white-text"><i class="big-icons material-icons">record_voice_over</i></h2>
+                          <h5 class="center white-text">View Stories By A User</h5>
+                      </div>
+                  </div>
+                  
+                  <div class="col s12 m4 black">
+                      <div class="icon-block "><br/>
+                        <h2 class="big-icons-wrapper pulse white-text"><i class="big-icons material-icons">event</i></h2>
+                          <h5 class="center white-text">Find Events</h5>
+                      </div>
+                  </div>
+                  
+                  <div class="col s12 m4">
+                      <div class="icon-block"><br/>
+                        <h2 class="big-icons-wrapper pulse blue-text"><i class="big-icons material-icons">event</i></h2>
+                          <h5 class="center ">View Events</h5>
+                      </div>
+                  </div>
+                  
+                  </center>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="parallax-container valign-wrapper">
+          <div class="section no-pad-bot">
+              <div class="container">
+                  <div class="row center">
+                      <h5 class="header col s12 light">Keep the world updated with what's happening in your place</h5>
+                  </div>
+              </div>
+          </div>
+          <div class="parallax"><img src="burst-pipe.jpg" th:src="@{/img/burst-pipe.jpg}" alt="Background image"/></div>
+      </div>
+
+          <div class="section me">
+                  <div class="me col s12 center ">
+
+                          <div class="container">
+
+                          <h3><i class="mdi-content-send white-text"></i></h3>
+                          <h4 class="white-text">How This Works?</h4>
+                              <h6 class="left-align light pink-text">
+                                  You first need to have an account with us, then you sign in,
+                                  after successful sign in then you can be able to
+                                  let us know what is happening at your place, home , city or the place you visited.
+                                  Then after you will get responds from other users.
+                              </h6>
+                  </div>
+
+          </div>
+
+      </div>
+
+      <div class="parallax-container valign-wrapper">
+          <div class="section no-pad-bot">
+              <div class="container">
+                  <div class="row center">
+                      <h5 class="header col s12 light">Don't know where the fun is this weekend? We're here for you...</h5>
+                  </div>
+              </div>
+          </div>
+          <div class="parallax"><img src="index.jpg" th:src="@{/img/index.jpg}" alt="Background image"/></div>
+      </div>
+
+          <div class="section lib">
+
+              <div class="container">
+              <div class="row">
+                  <div class="col s12 center">
+                      <h3><i class="mdi-content-send brown-text"></i></h3>
+                      <h4 class="white-text">Events</h4>
+                      <h6 class="left-align light white-text">
+                          If you are looking for events then look no further, we go around collecting event details 
+                          from event organizers helping you to simply find the event that suits you there best...All
+                          you need to do is to just search!
+                          
+                      </h6>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+    
+    
+    <div class="parallax-container valign-wrapper">
+          <div class="section no-pad-bot">
+              <div class="container">
+                  <div class="row center">
+                      <h5 class="header col s12 light">Hosting an event and want to get the word out there? We're here for you...</h5>
+                  </div>
+              </div>
+          </div>
+          <div class="parallax"><img src="index.jpg" th:src="@{/img/index.jpg}" alt="Background image"/></div>
+      </div>
+
+          <div class="section blue">
+
+              <div class="container">
+              <div class="row">
+                  <div class="col s12 center">
+                     
+                      <h4 class="white-text">Event Advertisement </h4>
+                      <h6 class="left-align light white-text">
+                          If you're hosting an event and want the world to know about it we're here for you.
+                          If you are looking for events then look no further, we go around collecting event details 
+                          from event organizers helping you to simply find the event that suits you there best...All
+                          you need to do is to just search!
+                          
+                      </h6>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+     <div class="parallax-container valign-wrapper">
+          <div class="section no-pad-bot">
+              <div class="container">
+                  <div class="row center">
+                      <h5 class="header col s12 light">Your word is important to us, please click <a href="#" th:href="@{/add/suggestion}">here</a> to suggest anything that you
+                      feel is missing from this app.
+                      </h5>
+                  </div>
+              </div>
+          </div>
+          <div class="parallax"><img src="index.jpg" th:src="@{/img/index.jpg}" alt="Background image"/></div>
+      </div>
+    
+
+      <div style="background-color:#fafafa00;" id="modal1" class="modal bottom-sheet">
+          <div  class="modal-content center">
+              <div style="padding:0px !important;" class="modal-content">
+                  <div class="fb-page"
+                       data-href="https://www.facebook.com/Waycermobi/"
+                       data-tabs="messages"
+                       data-width="400"
+                       data-height="300"
+                       data-small-header="true">
+                      <div class="fb-xfbml-parse-ignore">
+                          <blockquote></blockquote>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  <div th:replace="/fragments/nfooter :: nfooter"/>
+     
+<!-- <a  href="#modal1" class="btn-floating pulse  modal-trigger" id="view-source"><i class="material-icons">chat</i></a>
+
+     <div id="diamond"></div>
+   -->   <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+      <script src="js/init.js" th:src="@{/js/init.js}"></script>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+ <title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="../css/style.css" th:href="@{/css/main.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+</head>
+<body class="mee">
+    <nav class="go-nowhere teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style="height: 60px;"/></a>
+                  <ul class="right hide-on-med-and-down">
+            <li  role="presentation"><a class="white-text" th:href="@{/login}">Sign In</a></li>
+            <li  role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+            <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+            <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+            <li  role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+             <li class="active" role="presentation"><a class="white-text" th:href="@{/request}">Join</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav teal darken-3">
+            <li  role="presentation"><a class="white-text" th:href="@{/login}">Sign In</a></li>
+            <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+            <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+            <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+            <li  role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+            <li class="active" role="presentation"><a th:href="@{/request}">Join</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+    </div>
+</nav>
+
+      <div id="index-banner" class="parallax-container">
+          <div class="section no-pad-bot">
+              <div class="container">
+                
+                  <h1 class="header center teal-text text-lighten-2">FixMypLace</h1>
+                  <div class="row center">
+                      <h5 class="header col s12 light">Please provide us with the required information</h5>
+                  </div>
+                  <div class="row center">
+                      <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get the App</a>
+                  </div>
+                 
+
+              </div>
+          </div>
+          <div class="parallax"><img src="../static/img/background1.jpg" th:src="@{/img/backlit-keyboard.jpg}" alt="Unsplashed background img 1"/></div>
+      </div>
+  <div class="container  ">
+
+      <div class="row">
+          <form class="col s12 card  center" th:action="@{/add/your/place}" th:object="${place}" method="post">
+              <br/>    
+              <span class="green-text" th:text="${msg}"></span>
+              
+              <div class="row">
+                  <div class="input-field col s6">
+                      <input id="name"  th:field="*{name}" type="text" class="validate"/>
+                      <label for="name">Place Name</label>
+
+                  </div>
+                  <div class="input-field col s6">
+                      <input id="contact_person" th:field="*{contactPerson}" type="text" class="validate"/>
+                      <label for="contact_person">Contact Person</label>
+
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input id="cell" type="number" th:field="*{contactNumber}" class="validate"/>
+                      <label for="cell">Contact Number</label>
+                      <span class="helper-text" data-error="Invalid  contact number format!" data-success="contact number  seems to be correct"></span>
+                  </div>
+              </div>
+                   
+                  <div class="row">
+                  <div class="input-field col s12">
+                      <input id="province" type="text" th:field="*{province}" minlength="5" class="validate"/>
+                      <label for="province">Province</label>
+                      <span class="helper-text" data-error="Province too short!" data-success="Province seems to be correct"></span>
+                  </div>
+              </div> 
+                   
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input id="email" type="email" th:field="*{email}" class="validate"/>
+                      <label for="email">Email</label>
+                      <span class="helper-text" data-error="Invalid email format!" data-success="Email seems to be correct"></span>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col s12">
+                      This is an inline input field:
+                      <div class="input-field inline">
+                          <input id="email_inline" type="submit" class="btn red" value="Add your province"/>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+
+
+
+
+
+  </div>
+
+     <div th:replace="/fragments/nfooter :: nfooter"/>
+
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+      <script src="js/init.js" th:src="@{/js/init.js}"></script>
+
+    
+    </body>
+</html>

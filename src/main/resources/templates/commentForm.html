@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    
+
+    <div th:replace="/fragments/header :: header-css"/>
+
+</head>
+<body class="mee">
+<div th:replace="/fragments/header :: header"/>
+
+
+<div class="container">
+
+    <div class="container">
+        <div class="row"  >
+            <div class="col m12 m7">
+                <div class="card" >
+                    <div class="card-action">
+
+                        <h2 class="text-center">New Respond</h2>
+                        <hr/>
+
+                    </div>
+                    <div class="card-content">
+                        
+                         <h7 class="panel-body" th:text="${post}">Body</h7>
+                        
+                        
+                    </div>
+                    
+                    <div class="card-content">
+                        <form autocomplete="off" action="#" th:action="@{/respond}"
+                              th:object="${comment}" method="post" role="form">
+
+
+
+                            <div class="form-group">
+                                <label th:if="${#fields.hasErrors('body')}" th:errors="*{body}"
+                                       class="alert alert-danger"></label>
+                                <textarea th:field="*{body}"
+                                          placeholder="Body" class="form-control input-lg"/>
+                            </div>
+
+                            <input type="hidden" th:field="*{post}"/>
+                            <input type="hidden" th:field="*{user}"/>
+
+                            <div class="form-group">
+                                 <br/>
+                                <button type="submit" class="btn blue right">Respond</button>
+                                <br/>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="button">
+                        <a class="mee" href="#">views</a>
+
+                        <a href="#" th:href="@{/home}">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+<!-- /.container -->
+
+<div th:replace="/fragments/footer :: footer"/>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+</body>
+</html>

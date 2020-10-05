@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+ <script>
+ $(document).ready(function() {
+          $('#search').devbridgeAutocomplete({
+          serviceUrl: '/place',
+          paramName: 'search',
+          minChars: 1,
+          autoSelectFirst: true,
+      });
+    });
+  </script>
+
+    </head>
+<body class="mee">
+                  <nav class="teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+               <ul class="right hide-on-med-and-down">
+                <li  role="presentation"><a class="white-text" th:href="@{/home}">All Posts</a></li>
+                <li role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+               <li role="presentation"><a class="white-text"  th:href="@{/event/search}">Event </a></li>
+                <li  role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi</a></li>
+                 <li class="active" role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+
+            <ul  id="nav-mobile" class="sidenav">
+                <li class="active" role="presentation"><a th:href="@{/home}">All Posts</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/search}">Find a place</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+        </div>
+    </nav>
+
+
+        <div>TODO write content</div>
+        <div class="collection col s6"  >
+    <a  class="collection-item">change Details<span class="badge">1</span>Alan</a>
+ </div>  
+        
+        <div th:replace="/fragments/footer :: footer"/>
+    </body>
+</html>

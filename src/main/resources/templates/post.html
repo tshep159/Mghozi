@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <div th:replace="/fragments/header :: header-css"/> <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    
+</head>
+<body>
+<div th:replace="/fragments/header :: header"/>
+
+
+<div class="container">
+
+
+    <div class="row"  >
+        <div class="col m12 m7">
+            <div class="card">
+                  <div class="button">
+                    <a class="blue-text uppercase " th:text="${post.user.username }+' '+${post.user.lastName}" th:href="@{'/blog/' + ${post.user.username}}">User</a>
+                   
+                </div>
+                <div class="card-content">
+                    <h7 class="panel-body" th:text="${post.body}">Body</h7>
+                </div>
+                <div class="button" th:if="${username}">
+                    <a  class="blue-text" href="#" th:text="${post.views}+' views'">views</a>
+                   <a class="red-text"  th:href="@{'/post/' + ${post.id}}" th:text="Responds"></a>
+                   <a class="blue-text" th:href="@{'/support/post/'+${post.id}}" th:text="${post.likes}+' Support'">Support</a>
+                </div>
+
+
+
+
+                <div class="card-content mee">
+                   <!--Comments-->
+                    <h5>Responds</h5>
+                    <div class="container-fluid" th:each="comment : ${post.comments}">
+                        <div class="container "><a th:text="${comment.user.username}" th:href="@{'/storyline/' + ${comment.user.username}}">User</a>
+                        <p th:text="${comment.body}">Body</p>
+                        <div class="teal-text" th:text="${#dates.format(comment.createDate, 'dd-MMM-yyyy')}">
+                            Created by
+                        </div>
+
+                        </div>
+                    </div>
+<br class="teal"/>
+                    <!--Leave a comment button-->
+                    <!--Only if authenticated-->
+                   
+                        <div class="row">
+                            
+                            
+                            <a th:href="@{'/respond/{id}'(id=${post.id})}" class="col-md-2">
+                                <button type="button" class="btn blue right" th:text="Respond">Respond</button>
+                            </a>
+                        </div>
+                    
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<h2>Comments:</h2>
+
+  
+    <div class="well" th:each="comment : ${post.comments}">
+        <h3 th:text="${comment.body}">Body</h3>
+        <div th:text="'Created: ' + ${#dates.format(comment.createDate, 'dd-MMM-yyyy')} + ' by '">
+            Created by
+        </div>
+        <div><a th:text="${comment.user.username}" th:href="@{'/blog/' + ${comment.user.username}}">User</a>
+        </div>
+    </div>-->
+
+    <!--Leave a comment button-->
+    <!--Only if authenticated-->
+    <!--
+    <div sec:authorize="isAuthenticated()">
+        <div class="row">
+            <a th:href="@{'/commentPost/{id}'(id=${post.id})}" class="col-md-2">
+                <button type="button" class="btn btn-primary btn-block" th:text="Comment">Comment</button>
+            </a>
+        </div>
+    </div>-->
+</div>
+<!-- /.container -->
+
+<div th:replace="/fragments/footer :: footer"/>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+
+</body>
+</html>
+

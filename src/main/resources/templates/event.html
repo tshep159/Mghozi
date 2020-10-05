@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="myapp">
+<head>
+   <!-- this is header -->
+
+ <title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+ 
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+        <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+         <link rel="shortcut icon"  th:href="@{/img/fav.jpg}"/>
+    
+
+</head>
+<body class="mee" ngController="eventController">
+
+           <nav class="teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+               <ul class="right hide-on-med-and-down">
+                <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+               
+                <li class="active" role="presentation"><a class="white-text "  th:href="@{event}">Ziwaphi ?</a></li>
+                 <li role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+
+            <ul  id="nav-mobile" class="sidenav teal darken-3">
+                             <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+               
+                <li class="active" role="presentation"><a class="white-text "  th:href="@{event}">Ziwaphi ?</a></li>
+                 <li role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+        </div>
+    </nav>
+        
+        <div class="container" style="width: auto" >
+    
+            <div class="container" style="width: auto">
+    <form autocomplete="off" action="#" th:action="@{/event}"
+                           method="post" class="form-horizontal"
+                          enctype="multipart/form-data"
+                          role="form">
+        
+        
+        
+        <div class="form-group row">
+            <div class="container-fluid" style="padding-left: 460px">
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="prod_name"  placeholder="name" style="width: 350px" required=""/>
+            </div>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="password" placeholder="description" style="width: 350px" required=""/>
+            </div>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="password"  placeholder="price e.g R250" style="width: 350px" required=""/>
+            </div>
+            <div class="col-md-4">
+
+                <label for="file">Upload Photo of the product</label>
+                <input type="file"  accept="image/png"  />
+            </div>
+            <div class="col-lg-10">
+                <button class="btn btn-success" id="submit" type="submit" style="width: 350px" >Add Product</button>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+
+            
+            
+            
+            
+        </div>
+
+        
+        
+            <h1>Events </h1>
+    
+
+        <ul class="list-group text-center">
+          <li class="col-xs-6 col-md-3 col-sm-3 col-lg-3 list-group-item" ng-repeat="product in products">
+            <figure>
+              <img ng-src="{{product.image}}" alt="" style="width: 80px; height: 100px;"/>
+              <figcaption>
+                  {{product.name}}  
+                  <p> {{product.street}}</p>
+                    <p> {{product.town}}</p>
+              </figcaption>
+            </figure>
+             
+          </li>
+     
+        </ul>
+               
+        
+        
+        <div class="collection col s6"  >
+    <a  class="collection-item">change Details<span class="badge">1</span>Alan</a>
+ </div>  
+        
+        <div th:replace="/fragments/footer :: footer"/>
+        <script src="js/materialize.js" th:src="@{/js/angular.js}"></script>
+<script src="js/materialize.js" th:src="@{/js/Controller.js}"></script>
+   <script src="js/jquery.autocomplete.js" th:src="@{/js/jquery.autocomplete.js}"></script>
+<script src="js/materialize.js" th:src="@{/js/angular-route.js}"></script>
+    </body>
+</html>

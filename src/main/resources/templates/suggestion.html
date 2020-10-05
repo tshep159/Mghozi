@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    <link href="../css/style.css" th:href="@{/css/main.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <style>
+
+    </style>
+</head>
+<body class="mee">
+      <nav class="go-nowhere teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo"  th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+              <ul class="right hide-on-med-and-down white-text">
+                  <li  role="presentation"><a class="white-text" th:href="@{/login}">Sign In</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li class="active" role="presentation"><a class="white-text" th:href="@{/add/suggestion}">Suggestion</a></li>
+              </ul>
+
+              <ul id="nav-mobile" class="sidenav teal darken-3">
+                   <li  role="presentation"><a class="white-text" th:href="@{/login}">Sign In</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li class="active" role="presentation"><a class="white-text" th:href="@{/add/suggestion}">Suggestion</a></li>
+              
+              </ul>
+              <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+          </div>
+      </nav>
+
+
+      <div id="index-banner" class="parallax-container">
+          <div class="section no-pad-bot">
+              <div class="container">
+
+                  <h1 class="header center teal-text text-lighten-2">pLaze</h1>
+                  <div class="row center">
+                      <h5 class="header col s12 light">Keeping you in touch with your hood</h5>
+                  </div>
+                  
+                    <div class="row center">
+                      <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get the App <li class="material-icons">android</li></a>
+                  </div>
+
+              </div>
+          </div>
+          
+          <div class="parallax"><img src="../static/img/floot.jpg" th:src="@{/img/floot.jpg}" alt="Background image"/></div>
+      </div>
+
+    <div class="container">
+        
+        <h1 class="center"> Your word is important to us. Please suggest  what you think is missing from the App and we will keep intouch with you</h1>
+        
+        
+        
+      <div class="row">
+          <form class="col s12 card  center" method="post" th:object="${suggestion}" th:action="@{/add/suggestion}">
+              <div class="row">
+                  <div class="input-field col s6">
+                      <input  id="name" type="text" minlength="3" th:field="*{name}" class="validate"/>
+                      <label for="name">Your Name</label>
+                          <span class="helper-text" data-error="Name too short!" data-success="Name seems to be correct"></span>
+
+                  </div>
+                  <div class="input-field col s6">
+                         <input id="cell" type="number" th:field="*{contactNumber}" class="validate"/>
+                      <label for="cell">Contact Number</label>
+                      <span class="helper-text" data-error="Invalid  contact number format!" data-success="contact number  seems to be correct"></span>
+
+                  </div>
+              </div>
+          
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input id="email" type="email" th:field="*{email}" class="validate"/>
+                      <label for="email">Email</label>
+                      <span class="helper-text" data-error="Invalid email format!" data-success="Email seems to be correct"></span>
+                  </div>
+              </div>
+              
+                  <div class="row">
+                  <div class="input-field col s12">
+                      <input id="body" type="text" th:field="*{body}" class="validate" minlength="10"/>
+                      <label for="body">Suggestion Description</label>
+                      <span class="helper-text" data-error="Description too short!" data-success="Thats more like it"></span>
+                  </div>
+              </div>
+              
+              <div class="row">
+                  <div class="col s12">
+                      By pressing "Suggest" you allow us to contact you and agree to our terms and conditions:
+                      <div class="input-field inline">
+                          <input id="email_inline" type="submit" class="btn red"  value="Suggest"/>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+
+    </div>
+    
+    
+  <div th:replace="/fragments/nfooter :: nfooter"/>
+      <a  href="#modal1" class="btn-floating pulse  modal-trigger" id="view-source"><i class="material-icons">chat</i></a>
+
+<!--
+     <div id="diamond"></div>
+   -->   <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+      <script src="js/init.js" th:src="@{/js/init.js}"></script>
+    </body>
+</html>
+

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title th:text="'FixMyPlace - ' + ${title}">>FixMyPlace | Home</title>
+
+    <div th:fragment="header-css">
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+        <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="../css/style.css" th:href="@{/css/bootstrap.css}" type="text/css" rel="stylesheet" />
+        <link href="../css/style.css" th:href="@{/css/myapp.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="../css/style.css" th:href="@{/css/tabs.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    </div>
+
+</head>
+<body  class="mee">
+<div th:replace="/fragments/adminHeader :: adminheader"/>
+    <div class="container">
+  
+
+       <h3 class="red-text" th:text=" 'Total number of users '+${total} "> </h3> 
+  <h3 class="blue-text" th:utext="${adminMessage}"></h3>
+      
+    <form th:object="${user}" th:action="@{/admin/students}" method="get">
+        <center> 
+            <div class="cyan">
+                
+                <h4 class="teal-text">Search for User</h4>
+        <input type="text" name="search" id="search" class="form-control" style="width: 28%;"  /><br/>
+       <br/> <input class="btn blue-grey " style="width: 28%;"  type="submit" value="Search"/>
+      <br/> <br/> <br/>
+            </div>
+      </center>
+       <div th:if="${not #lists.isEmpty(search)}">
+            <h2 class="teal-text">Users</h2>
+            <table class="highlight cyan-text white">
+                <tr>
+                 <th>User Id</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Activate/Deactivate</th>
+                      <th>Edit</th>
+                </tr>
+               <tr class="white"
+                   th:each="u : ${search}">
+
+                    <td th:text="${u.id}">User Id</td>
+                    <td th:text="${u.email}">email</td>
+                    <td th:text="${u.lastName}">Last Name</td>
+                    <td th:text="${u.first_name}">First Name</td>
+                    <td th:text="${u.username}">username</td>
+                   <td>
+                <center> <a class="btn red" th:href="${'/admin/activate/' + u.id}"> <i class="medium material-icons prefix">block</i></a></center>
+         
+                    </td>
+                        <td><a class="btn red" th:href="${'/admin/user/edit/'+ u.id}"> <i class="material-icons prefix">mode_edit</i></a></td>
+               
+                </tr>
+            </table>
+        </div>
+    </form>
+
+
+
+
+        <main>
+
+            <input id="tab1" type="radio" name="tabs" />
+            <label for="tab1">All Users</label>
+
+            <input id="tab2" type="radio" name="tabs"/>
+            <label for="tab2">Manage  Users</label>
+
+            <input id="tab3" type="radio" name="tabs"/>
+            <label for="tab3">Manage Municipality</label>
+
+            <input id="tab4" type="radio" name="tabs"/>
+            <label for="tab4">All Posts</label>
+
+            <input id="tab5" type="radio" name="tabs"/>
+            <label for="tab5">Manage Events</label>
+
+            <input id="tab6" type="radio" name="tabs"/>
+            <label for="tab6">Requests</label>
+            <input id="tab7" type="radio" name="tabs"/>
+            <label for="tab7">Error Reports</label>
+
+
+            <section id="content1">
+                <!--List of users-->
+                <div class="white">
+                    <div class="highlight">
+                        <div th:if="${not #lists.isEmpty(users)}">
+                            <h2 class="teal-text">All Users</h2>
+                            <h5 class="red-text" th:text=" 'Total number of users '+${total} "> </h5> <h3 class="blue-text" th:utext="${adminMessage}"></h3>
+
+                            <table class="highlight responsive-table white" id="productsTable">
+                                <tr>
+                                    <th>User Id</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Cell</th>
+                                    <th>Line One</th>
+                                    <th>Line Two</th>
+                                    <th>Suburb</th>
+                                    <th>Last Login</th>
+                                    <th>Active</th>
+
+                                </tr>
+                                <tr th:each="user : ${users}">
+
+                                    <td th:text="${user.id}">User Id</td>
+                                    <td th:text="${user.email}">email</td>
+                                    <td th:text="${user.lastName}">Last Name</td>
+                                    <td th:text="${user.first_name}">First Name</td>
+                                    <td th:text="${user.username}">username</td>
+                                    <td th:text="${user.contactNumber}">Cell</td>
+                                    <td th:text="${user.addressLineOne}">Line One</td>
+                                    <td th:text="${user.addressLineTwo}">Line Two</td>
+                                    <td th:text="${user.city}">Suburb</td>
+                                     <td th:text="${user.lastLogin}">Suburb</td>  
+                                    <td  th:text="${user.active}">Zip</td>
+
+                                           <!--<td><a th:href="${'/user/delete/' + user.id}">Delete</a></td>-->
+                                </tr>
+
+                                <tr>
+
+                                    <th>User Id</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Cell</th>
+                                    <th>Line One</th>
+                                    <th>Line Two</th>
+                                    <th>Suburb</th>
+                                    <th>Last Login</th>
+                                    <th>Active</th>
+
+                                </tr>
+
+                            </table>
+                            <h5 class="red-text" th:text="'Total number of users '+${total} "></h5>
+                        </div>
+                        <br/><br/><br/>
+
+                    </div>
+                </div>
+                <!--List users end-->
+
+            </section>
+
+            <section id="content2">
+                <!--List of users-->
+                <div class="yellow">
+                    <div class="highlight">
+                        <div th:if="${not #lists.isEmpty(users)}">
+                            <h2 class="teal-text">All Normal Users</h2><h3 class="blue-text" th:utext="${adminMessage}"></h3>
+                            <h5 class="red-text" th:text=" 'Total number of normal users '+${total} "> </h5>
+
+
+                            <table class="highlight responsive-table white" id="productsTable">
+                                <tr>
+                                    <th>User Id</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Cell</th>
+                                    <th>Line One</th>
+                                    <th>Line Two</th>
+                                    <th>Suburb</th>
+                                    <th>Last Login</th>
+                                    <th>Active</th>
+                                    <th>Activate/Deactivate</th>
+                                    <th>Edit</th>
+                                </tr>
+                                <tr th:each="user : ${users}">
+
+                                    <td th:text="${user.id}">User Id</td>
+                                    <td th:text="${user.email}">email</td>
+                                    <td th:text="${user.lastName}">Last Name</td>
+                                    <td th:text="${user.first_name}">First Name</td>
+                                    <td th:text="${user.username}">username</td>
+                                    <td th:text="${user.contactNumber}">Cell</td>
+                                    <td th:text="${user.addressLineOne}">Line One</td>
+                                    <td th:text="${user.addressLineTwo}">Line Two</td>
+                                    <td th:text="${user.city}">Suburb</td>
+                                    <td th:text="${user.lastLogin}">Suburb</td>       
+                                    <td  th:text="${user.active}">Zip</td>
+                                    <td>
+                                        <center> <a class="btn red" th:href="${'/admin/activate/' + user.id}"> <i class="medium material-icons prefix">block</i></a></center>
+
+                                    </td>
+                                    <td><a class="btn yellow" th:href="${'/admin/user/edit/'+ user.id}"> <i class="material-icons prefix">mode_edit</i></a></td>
+                                    <!--<td><a th:href="${'/user/delete/' + user.id}">Delete</a></td>-->
+                                </tr>
+
+                                <tr>
+
+                                    <th>User Id</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Cell</th>
+                                    <th>Line One</th>
+                                    <th>Line Two</th>
+                                    <th>Suburb</th>
+                                    <th>Last Login</th>
+                                    <th>Active</th>
+                                    <th>Activate/Deactivate</th>
+                                    <th>Edit</th>
+                                </tr>
+
+                            </table>
+                            <h5 class="red-text" th:text="'Total number of normal users '+${total} "></h5>
+                        </div>
+                        <br/><br/><br/>
+
+                    </div>
+                </div>
+                <!--List users end-->
+
+
+
+
+            </section>
+
+            <section id="content3">
+
+                <!--List Municipalities-->
+                <div class="brown">
+                    <div class="highlight">
+                        <div th:if="${not #lists.isEmpty(users)}">
+                            <h2 class="teal-text">Municipalities</h2>
+                            <h5 class="white-text" th:text=" 'Total number of Municipalities '+${mtotal} "> </h5>
+                            <h3 class="blue-text" th:utext="${madminMessage}"></h3>
+
+                            <table class="highlight responsive-table white" id="productsTable">
+                                <tr>
+                                    <th>User Id</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Cell</th>
+                                    <th>Line One</th>
+                                    <th>Line Two</th>
+                                    <th>Province</th>
+                                    <th>Date Joined</th>
+                                    <th>Active</th>
+                                    <th>Activate/Deactivate</th>
+                                    <th>Edit</th>
+                                </tr>
+                                <tr th:each="user : ${municipalities}">
+
+                                    <td th:text="${user.id}">User Id</td>
+                                    <td th:text="${user.email}">email</td>
+                                    <td th:text="${user.lastName}">Last Name</td>
+                                    <td th:text="${user.first_name}">First Name</td>
+                                    <td th:text="${user.username}">username</td>
+                                    <td th:text="${user.contactNumber}">Cell</td>
+                                    <td th:text="${user.addressLineOne}">Line One</td>
+                                    <td th:text="${user.addressLineTwo}">Line Two</td>
+                                    <td th:text="${user.province}">Suburb</td>
+                                    
+                                    <td  th:text="${user.active}">Zip</td>
+                                    <td>
+                                        <center> <a class="btn red" th:href="${'/admin/activate/municipality/' + user.id}"> <i class="medium material-icons prefix">block</i></a></center>
+
+                                    </td>
+                                    <td><a class="btn yellow" th:href="${'/admin/user/edit/'+ user.id}"> <i class="material-icons prefix">mode_edit</i></a></td>
+                                    <!--<td><a th:href="${'/user/delete/' + user.id}">Delete</a></td>-->
+                                </tr>
+
+                                <tr>
+
+                                    <th>User Id</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Cell</th>
+                                    <th>Line One</th>
+                                    <th>Line Two</th>
+                                    <th>Suburb</th>
+                                    <th>Date Joined</th>
+                                    <th>Active</th>
+                                    <th>Activate/Deactivate</th>
+                                    <th>Edit</th>
+                                </tr>
+
+                            </table>
+                            <h5 class="white-text" th:text="'Total number of Municipalities '+${mtotal} "></h5>
+                        </div>
+                        <br/><br/><br/>
+
+                    </div>
+                </div>
+                <!-- end list Municipalities-->
+            </section>
+            <section id="content4">
+                <h1>All Posts</h1>
+                        <table class="highlight responsive-table white" id="productsTable">
+                                <tr>
+                                    <th> Id</th>
+                                    <th>Body</th>
+                                    <th>Views</th>
+                                    <th>Owner</th>
+                                    <th>Date Created</th>
+                                    <th>Active</th>
+                                    <th>Activate/Deactivate</th>
+                                    <th>Edit</th>
+                                </tr>
+                                <tr  th:each="post : ${pager.posts}">
+
+                                    <td class="grey" th:text="${post.id}">User Id</td>
+                                    <td th:text="'    '+${post.body}">email</td>
+                                    <td th:text="${post.views}">Last Name</td>
+                                    <td>First Name</td>
+                                    <td th:text="${#dates.format(post.createDate, 'dd-MMM-yyyy')}">username</td>
+                                       <!-- <td>
+                                        <center> <a class="btn red" th:href="${'/admin/activate/municipality/' + user.id}"> <i class="medium material-icons prefix">block</i></a></center>
+
+                                    </td>
+                                    <td><a class="btn yellow" th:href="${'/admin/user/edit/'+ user.id}"> <i class="material-icons prefix">mode_edit</i></a></td>-->
+                                    <!--<td><a th:href="${'/user/delete/' + user.id}">Delete</a></td>-->
+
+                                </tr>
+
+                                <tr>
+
+                                    <th>Id  </th>
+                                    <th>Body</th>
+                                    <th>Views</th>
+                                    <th>Owner</th>
+                                    <th>Date Created</th>
+                                    <th>Active</th>
+                                    <th>Activate/Deactivate</th>
+                                    <th>Edit</th>
+                                </tr>
+
+                            </table>
+                        <div th:replace="/fragments/pagination :: pagination(URLparameter='/admin/all/users')"/>
+                            <h5 class="white-text" th:text="'Total number of Municipalities '+${mtotal} "></h5>
+
+
+
+            </section>
+            <section id="content5">
+                <h1>Manage Events</h1>
+                
+                
+                
+                     
+                     <table class="table table-hover">
+		    		<thead>
+			      		<tr>
+					        <th>No.</th>
+					        <th>File Name</th>
+					        <th>Type</th>
+                                                 <th>Date</th>
+					        <th>Description</th>
+                                                <th>Active</th>
+					        <th width="100">Action</th>
+					        <th width="100"></th>
+						</tr>
+			    	</thead>
+		    		<tbody th:each="document : ${documents}">
+                                     <td th:text="${document.id}">username</td>
+                                     <td th:text="${document.name}">username</td>
+                                  <td th:text="${document.type}">username</td>
+                                   <td th:text="${document.date}">username</td>
+                                   <td th:text="${document.description}">username</td> 
+                                    <td th:text="${document.active}">username</td> 
+                               <img th:src="${document.content}" alt="" />
+                               <td> <a class="btn" th:href="@{'/admin/download-document/'+${document.id}}">download</a></td>
+		    		
+                               <td><a class="btn" th:href="@{'/admin/delete-document/'+${document.id}}" >delete</a></td>
+                               <td>  <center> <a class="btn red" th:href="${'/activate/' + document.id}"> Activate/Deactivate</a></center></td>
+
+                     </tbody>
+		    	</table>
+	
+  
+            </section>
+
+            <section id="content6">
+                <h1>Scroll down to see All Requests</h1>
+                
+                <div class="row">
+    <div class="col s6 m4" th:each="request : ${requests}">
+      <div class="card blue-grey darken-1">
+          
+        <div class="card-content white-text">
+          <span class="card-title"  th:text="${request.contactPerson}">Card Title</span>
+         
+          <p class="white black-text center" th:text="${request.contactNumber}">I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+      
+          <p  th:text="${request.name}">I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+          
+          <p class="yellow-text"  th:text="${request.province}"></p>
+        </div>
+        <div class="card-action center">
+         
+         
+        </div>
+      </div>
+    </div>
+  </div>
+                
+                
+                
+                
+            </section>
+            <section id="content7">
+                <h1>Error Reportsr</h1>
+                
+            </section>
+        </main>
+
+        <br/><br/><br/>
+ <h3 class="red-text" th:text=" 'Total number of users '+${total} "> </h3> 
+  <h3 class="blue-text" th:utext="${adminMessage}"></h3>
+
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+     </script>    
+     <script src="js/materialize.js" th:src="@{/js/jquery.js}"></script>
+     <script src="js/init.js" th:src="@{/js/init.js}"></script>
+    
+     
+     
+</div><div th:replace="/fragments/adminfooter :: adminfooter"/>
+</body>
+</html>

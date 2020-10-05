@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+    <div th:replace="/fragments/header :: header-css"/>
+ <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+       <link href="css/font-awesome.min.css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+       <style>
+           .drop-target.drop-open {
+    outline: 2px solid;
+}
+
+.body {
+    position: relative;
+    margin-right: 300px;
+}
+
+.page {
+    max-width: 100%;
+    width: 1080px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.navigation {
+    background: blue;
+    color: #fff;
+    margin-right: 300px;
+    margin-bottom: 30px;
+}
+
+.navigation .item a {
+    padding: 30px 20px;
+    display: inline-block;
+}
+
+.navigation .item a {
+    color: inherit;
+}
+
+.navigation .drop-target.drop-open {
+    background: #fff;
+    color: blue;
+    outline: none;
+}
+
+.right-sidebar {
+    position: fixed;
+    height: 50%;
+    width: 300px;
+
+    overflow: auto;
+    right: 0;
+}
+
+.right-sidebar .drop-target.drop-open {
+    background: blue;
+    
+    outline: none;
+}
+
+.right-sidebar .item a {
+    display: block;
+    padding: 20px;
+    margin-bottom: 10px;
+  
+}
+
+.right-sidebar-top {
+    top: 2;
+}
+
+.right-sidebar-bottom {
+    top: 20%;
+    background: #ccc;
+}
+
+.scroll-container {
+    position: relative; 
+    overflow: auto;
+    background: #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    height: 200px;
+    width: 300px;
+}
+
+.absolute-container {
+    position: absolute;
+    top: 20px;
+    right: 300px;
+}
+
+           
+       </style>
+</head>
+<body class="mee">
+
+ <nav class="teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+               <ul class="right hide-on-med-and-down">
+               <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li class="active" role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                  <li role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li  role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi </a></li>
+                 <li  role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+
+            <ul  id="nav-mobile" class="sidenav teal darken-3">
+                     <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li class="active" role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                  <li role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li  role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi </a></li>
+                 <li  role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+        </div>
+    </nav>
+    
+    
+
+
+
+    
+    <div class="container">
+        <div class=" form-inline col-md-offset-9" style="margin-top: 0px;">
+
+        <!--New Post Form-->
+        <div class="row" style="margin-top:20px">
+            <div class="container">
+
+                <!--Show this info message only if posted successfully-->
+                <div class="teal-text" th:if="${successMessage}" th:utext="${successMessage}"></div>
+
+                <!--New Post Form-->
+                <div class="row" style="margin-top:20px">
+                    <div class="col-md-6">
+         
+                        <form autocomplete="off" 
+                                      th:action="@{/new/story}" 
+                                      th:object="${post}" method="post">
+
+
+                              <h3 class="red-text" th:if="${successMessage}" th:utext="${successMessage}"></h3>
+                        
+                            <div class="form-group">
+                                <label th:if="${#fields.hasErrors('body')}" th:errors="*{body}"
+                                       class="red-text"></label>
+                                <textarea th:field="*{body}" class="editboxbody white blue-text pl-ziro" 
+                                    placeholder="  What's on your mind?"
+                                    
+                                       style="border-radius: 0%;"
+                                          cols="15" rows="3" name="story" required=""/>
+                            
+                            </div>
+
+                          <input type="hidden" th:field="*{user}"/>
+                    <input type="hidden" th:field="*{id}"/>
+                  
+                            <div class="form-group">
+                                <input id="buts" name="" type="submit" value="POST"/>
+                            </div>
+
+                        </form>
+        
+ 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!--Delete Button-->
+        <!--Dont show delete button if the post is brand new-->
+        <div class="row" th:if="${post.id}">
+            <div class="col-md-6 col-md-offset-3">
+                <form action="#" th:action="@{'/post/{id}'(id=${post.id})}" th:method="delete"
+                      class="form-horizontal">
+                    <div class="form-group">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-danger btn-block" th:text="Delete">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+ 
+<!-- /.container -->
+<!--
+     <div class="right-sidebar right-sidebar-bottom">
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="true" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+            <div class="item">
+                <a class="drop-target" data-constrain="false" data-class="drop-theme-arrows" data-attach="left bottom">DROP</a>
+            </div>
+        </div>-->
+<div class="container">
+<div class="mee right-sidebar right-sidebar-top col-md-offset-3 hide-on-med-and-down">
+ 
+    <a class="drop-target" data-constrain="true" data-attach="bottom right"><h5>Upcoming Events</h5></a><br/>
+                <div class="scroll-container" >
+                    <div th:each="e :${events}">
+                        <div class="card center">
+                            <h3 th:text="${e.clubName}"></h3>
+                            <b> <p class="red-text" th:text="${e.place}"/></b>
+                    <p th:text="${e.town}"/>
+                    <p th:text="${e.description}"/>    
+                    <p th:text="${e.date}"/>  
+                  <br/><a class="cyan-text" th:href="@{'/show/event/' + ${e.id}}" data-constrain="true" data-attach="bottom left">See More</a>
+           
+                  <br/>
+                        </div>
+                    </div>
+               </div>
+</div>
+</div>
+    <div th:replace="/fragments/posts :: posts"/>
+    <div th:replace="/fragments/pagination :: pagination(URLparameter='/new/story')"/>
+
+<div th:replace="/fragments/footer :: footer"/>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+
+</body>
+</html>

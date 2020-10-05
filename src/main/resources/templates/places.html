@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+    
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+ <script>
+ $(document).ready(function() {
+          $('#search').devbridgeAutocomplete({
+          serviceUrl: '/place',
+          paramName: 'search',
+          minChars: 1,
+          autoSelectFirst: true,
+      });
+    });
+  </script>
+
+    </head>
+<body class="mee">
+       <nav class="teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style="height: 60px;"/></a>
+              <ul class="right hide-on-med-and-down">
+                  <li  role="presentation"><a  class="white-text" th:href="@{/login}">Sign In</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li class="active" role="presentation"><a class="white-text" th:href="@{/search}">Find A Place<</a></li>
+              </ul>
+
+              <ul id="nav-mobile" class="sidenav teal darken-3">
+                  <li  role="presentation"><a class="white-text" th:href="@{/login}">Sign In</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li class="active" role="presentation"><a th:href="@{/search}">Find A Place<</a></li>
+
+              </ul>
+              <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+          </div>
+      </nav>
+
+
+     
+          <div class="section">
+              <div class="container">
+
+                  <h1 class="header center teal-text white-text-lighten-2">pLace</h1>
+                  <div class="row center">
+                      <h5 class="header col s12 light">Keeping you in touch with your hood</h5>
+                  </div>
+                         
+     
+          <form th:object="${tshepo}" th:action="@{/place}" method="get">
+              <center> <h4 class="cyan-text">Search for a province...</h4>
+                  <i class="material-icons cyan-text prefix">textsms</i>
+      <input  type="text" class="autocomplete center yellow red-text" name="search" id="search" style="width: 25%;" placeholder="eg. gauteng"/><br/>
+        <input class="btn center pink bold waves-green" style="width: 28%;" type="submit" value="Search"/> </center> 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div th:if="${not #lists.isEmpty(search)}">
+            
+            <h6>Municipalities in the province you searched</h6>
+            
+           
+     <div class="row">
+    <div class="card col s12 m5"  th:each="up : ${search}">
+      <div class="card-panel teal">
+        <h4 class="white-text" th:text="${up.first_name}">   
+        </h4><br/>
+            <p class="white-text" th:text="${up.email}">   
+        </p><br/>
+            <h5 class="white-text" th:text="${up.district}">   
+        </h5><br/>
+        <center> <a class="btn red" style="width:40%;"  th:href="@{'/show/municipality/' + ${up.id}}" href="">View</a></center>
+      </div>
+    </div>
+     </div> 
+        </div>
+        
+    </form>
+              </div>
+          </div>
+    <div>
+        
+        
+    </div>
+  <div th:replace="/fragments/footer :: footer"/>
+       
+      <!--  Scripts-->
+      
+       <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+       <script src="js/jquery.autocomplete.js" th:src="@{/js/jquery.autocomplete.js}"></script>
+   
+</body>
+</html>

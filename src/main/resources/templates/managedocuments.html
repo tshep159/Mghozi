@@ -1,0 +1,194 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="myapp">
+<head>
+   
+       
+ <title th:text="'pLaze - ' + ${title}">>FixMyPlace | Home</title>
+ 
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+        <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+         <link rel="shortcut icon"  th:href="@{/img/fav.jpg}"/>
+    
+
+</head>
+<body class="mee" ngController="eventController">
+
+           <nav class="go-nowhere teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+               <ul class="right hide-on-med-and-down">
+                <li role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                  <li role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li class="active" role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi </a></li>
+                 <li role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+
+            <ul  id="nav-mobile" class="sidenav teal darken-3">
+                 <li role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                  <li role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li class="active" role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi </a></li>
+                 <li role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+        </div>
+    </nav>
+  
+    <div class="container">
+	
+				<table class="table table-hover">
+		    		<thead>
+			      		<tr>
+					        <th>No.</th>
+					        <th>File Name</th>
+					        <th>Type</th>
+					        <th>Description</th>
+					        <th width="100"></th>
+					        <th width="100"></th>
+						</tr>
+			    	</thead>
+		    		<tbody th:each="document : ${documents}">
+                                     <td th:text="${document.id}">username</td>
+                                     <td th:text="${document.name}">username</td>
+                                      <td th:text="${document.type}">username</td>
+                                       <td th:text="${document.description}">username</td> 
+                                    
+                                       <img th:src="${document.content}" alt="" />
+                                       <td> <a class="btn" th:href="@{'/download-document/'+${document.id}}">download</a></td>
+		    		</tbody>
+		    	</table>
+	
+    
+        <div class="container">
+            <div class="container card-panel card-stacked">
+				<form method="post" modelAttribute="fileBucket"  th:object="${fileBucket}"  enctype="multipart/form-data" th:action="@{/add-document}" class="form-horizontal">
+			
+				
+                                    <div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="clubname">Club Name</label>
+							<div class="col-md-7">
+								<input type="text" id="clubname" th:field="*{clubName}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+                                    </div>
+                                    
+                                         <div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="email">Email</label>
+							<div class="col-md-7">
+								<input type="email" id="email" th:field="*{email}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+                                    </div>
+                                    
+                                    
+                                         <div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="cell">Contact Number</label>
+							<div class="col-md-7">
+								<input type="text" id="cell" th:field="*{cell}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+                                    </div>
+                                    
+                                    
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="description">Event Description</label>
+							<div class="col-md-7">
+								<input type="text" id="description" th:field="*{description}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+					</div>
+                                    
+                                    
+                                    <div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="description">Place</label>
+							<div class="col-md-7">
+								<input type="text" id="description" th:field="*{place}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+					</div>
+                                    
+                                    <div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="description">Town</label>
+							<div class="col-md-7">
+								<input type="text" id="description" th:field="*{town}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+					</div>
+                                    
+                                    <div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="description">Normal Price</label>
+							<div class="col-md-7">
+								<input type="text" id="description" th:field="*{normalPrice}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+					</div>
+			<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="description">VIP Price</label>
+							<div class="col-md-7">
+								<input type="text" id="description" th:field="*{vipPrice}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+					</div>
+                                    <div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="description">Date</label>
+							<div class="col-md-7">
+								<input type="date" id="description" th:field="*{date}" class="form-control input-sm"/>
+							</div>
+							
+						</div>
+					</div>
+                                    	<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 " for="file">Upload a picture of your event</label>
+							<div class="col-md-7">
+                                                            <input type="file" id="file" th:field="*{file}" class="btn " accept="image/jpeg"/>
+								<div class="has-error">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+                                    
+					<div class="row">
+						<div class="form-actions floatRight">
+							<input type="submit" value="Upload" class="btn btn-primary btn-sm"/>
+						</div>
+					</div>
+	
+				</form>
+            </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+</body>
+</html>
+    

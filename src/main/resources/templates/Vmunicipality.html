@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+      <title th:text="'FixMyPlace - ' + ${title}">>FixMyPlace | Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <link href="../css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="../css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+
+</head>
+<body class="mee">
+       <nav class="teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style="width:225px; height: 60px;"/></a>
+               <ul class="right hide-on-med-and-down">
+                  <li  role="presentation"><a class="white-text" th:href="@{'/municipality/show/municipality/'+${municipality.id}}">Posts</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li role="presentation"><a  class="active white-text" th:href="@{/places}">Places</a></li>
+              </ul>
+
+              <ul id="nav-mobile" class="sidenav ">
+                 <li  role="presentation"><a class="white-text" th:href="@{'/municipality/show/municipality/'+${municipality.id}}">Posts</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/registration}">Sign Up</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/about}">About Us</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/faq}">FAQ</a></li>
+                  <li role="presentation"><a class="white-text" th:href="@{/privacy}">Privacy</a></li>
+                  <li role="presentation"><a  class="active white-text" th:href="@{/places}">Places</a></li>
+
+              </ul>
+              <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+          </div>
+      </nav>
+
+    <div class="row">   
+  <div class="card" th:object="${municipality}">
+      <input type="hidden" th:field="*{id}"/>
+    <div class="card-content">
+      <h4 th:text="'Name :' +${municipality.first_name}">I am a very simple card. I am good at containing small bits of information..</h4>
+      <h5 th:text="'District :'+${municipality.district}"></h5><br/>
+      <h5 th:text="'Province :'+${municipality.province}"></h5><br/>
+      <h5 th:text="'Email :'+${municipality.email}"></h5><br/>
+    </div>
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab"><a href="#test4">About</a></li>
+        <li class="tab"><a class="active" href="#test5">Services</a></li>
+        <li class="tab"><a href="#test6">Posts</a></li>
+      </ul>
+    </div>
+    <div class="card-content grey lighten-4">
+      <div th:text="${municipality.email}" id="test4">Test 1</div>
+      <div id="test5">Test 2</div>
+      <div id="test6">Test 3</div>
+    </div>
+  </div>
+    </div>   
+    
+<ol>
+<li style="margin-bottom: 50px;">
+           <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+<form autocomplete="off" action="#" th:action="@{'/post/municipality/'+ ${municipality.id}}" th:object="${post}" method="post" >
+          
+      <label th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+                                       class="red-text"></label>
+                                <input type="text" th:field="*{title}" placeholder="Title"
+                                       class="form-control input-lg white"/>
+ 
+   <label th:if="${#fields.hasErrors('body')}" th:errors="*{body}"
+                                       class="red-text"></label>
+       <textarea th:field="*{body}" class="editbox white" cols="23" rows="3" name="message"/>
+
+        <input type="hidden" th:field="*{user}"/>
+        <input type="hidden" th:field="*{id}"/>
+        <input id="but" name="" type="submit" value="POST" />
+</form>
+</li>
+</ol>
+  
+    <h5 th:text="'Issues Posted for :' +${municipality.first_name}" > Intro</h5>
+        <div th:replace="/fragments/posts :: posts"/>
+     
+        <div th:replace="/fragments/pagination :: pagination(URLparameter='/show/municipality/'+${id})"/>
+        
+        
+        
+        
+        
+         <footer class="page-footer teal darken-3">
+   
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p> </div>
+                   <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                <span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="username"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a th:href="@{/logout}">Sign Out</a>
+            </span>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="brown-text text-lighten-3" href="http://fixmyplace.com">FixMypLace</a>
+            </div>
+        </div>
+    </footer>
+ 
+    </body>
+</html>

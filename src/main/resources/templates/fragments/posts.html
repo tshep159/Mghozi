@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <style>
+        .mee{background:#e5eaf1;
+            font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+            font-size:11px;color:#333;margin:0;
+            padding:0;text-align:left;
+            direction:ltr;
+            unicode-bidi:embed}
+    </style>
+
+</head>
+<body class="mee">
+<div th:fragment="posts">
+
+
+<div class="container">
+
+
+        <div class="col m9 m7">
+            <div class="card" th:each="post : ${pager.posts}">
+                <div class="button">
+                    <a class="blue-text uppercase " th:text="${post.user.username }+' '+${post.user.lastName}" th:href="@{'/storyline/' + ${post.user.username}}">User</a>
+                   
+                </div>
+                <div class="card-content">
+                   
+                    <h6 class="panel-body" th:text="${post.body}">Body</h6>
+                      
+                    <h8 class="teal-text" th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy hh:mm:ss a')}">Created by</h8>
+                </div>
+                <div class="button">
+                    <div class="container  center">
+                    <a class="blue-text" href="#" th:text="${post.views}+' views '">views |</a>
+                  <a class="blue-text"  th:href="@{'/post/' + ${post.id}}" th:text="Responds"></a>
+                   <a class="blue-text" th:href="@{'/support/post/'+${post.id}}" th:text="${post.likes}+' Supports'"> Support</a>
+                </div>
+                   </div>
+                
+                  
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

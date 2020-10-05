@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header :: header-css"/> <link rel="shortcut icon" href="wtw.jpg" th:href="@{/img/fav.jpg}"/>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+       <link href="css/font-awesome.min.css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+</head>
+<body class="mee">
+<nav class="go-nowhere teal darken-3" role="navigation">
+          <div class="nav-wrapper container">
+              <a id="logo-container" href="#" class="brand-logo" th:href="@{/}"><img class="brand-logo" src="../static/img/floot.jpg" th:src="@{/img/logo.jpg}" alt="logo" style=" height: 60px;"/></a>
+               <ul class="right hide-on-med-and-down">
+                <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li  role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                  <li role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li  role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi ?</a></li>
+                 <li  role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+
+            <ul  id="nav-mobile" class="sidenav teal darken-3">
+                            <li  role="presentation"><a class="white-text" th:href="@{/home}">Place Stories</a></li>
+                <li  role="presentation"><a class="white-text"  th:href="@{/new/story}">New Story</a></li>
+             
+                <li role="presentation"><a class="white-text"  th:href="@{/search}">Find a Place</a></li>
+                  <li role="presentation"><a class="white-text"  th:href="@{/event/search}">Find an Event </a></li>
+                <li  role="presentation"><a class="white-text "  th:href="@{/add-document}">Ziwaphi ?</a></li>
+                 <li  role="presentation"><a class="white-text"  th:href="@{/account}">Settings</a></li>
+                <li role="presentation"><a class="white-text" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+        </div>
+    </nav>
+
+<div >
+    <div class="row">   
+  <div  class="card" th:object="${user}">
+      <input type="hidden" th:field="*{id}"/>
+    <div class="card-content">
+      <h4 th:text="'Name :' +${user.first_name}">I am a very simple card. I am good at containing small bits of information..</h4>
+   
+      <h5 th:text="'Surname :'+${user.lastName}"></h5><br/>
+    
+      
+      <h5 th:text="'Place :'+${user.city}"></h5><br/>
+    
+    </div>
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab"><a href="#test4"></a></li>
+        <li class="tab"><a class="active" href="#test5"></a></li>
+        <li class="tab"><a href="#test6"></a></li>
+      </ul>
+    </div>
+    <div class="card-content grey lighten-4">
+      <div id="test4"></div>
+      <div id="test5"></div>
+      <div id="test6"></div>
+    </div>
+  </div>
+    </div>   
+    <div class="jumbotron">
+        <h4 th:text="${user.username} + '\'s Storyline'">Username Blog</h4>
+    </div>
+
+    <br></br>
+    <br></br>
+
+    <div th:replace="/fragments/posts :: posts"/>
+
+    <div th:replace="/fragments/pagination :: pagination(URLparameter='/storyline/' + ${user.username})"/>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="/fragments/footer :: footer"/>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="js/init.js" th:src="@{/js/init.js}"></script>
+
+</body>
+</html>
